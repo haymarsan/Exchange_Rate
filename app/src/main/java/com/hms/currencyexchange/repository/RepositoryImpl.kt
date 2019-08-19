@@ -12,9 +12,7 @@ import retrofit2.Retrofit
 
 class RepositoryImpl: Repository {
 
-
     lateinit var mApi: CurrencyApi
-
 
     init {
         mApi = RetrofitService().createService(CurrencyApi::class.java)
@@ -26,6 +24,7 @@ class RepositoryImpl: Repository {
         mApi.getExchangeRate().enqueue(object : Callback<ExchangeRateVO>{
             override fun onFailure(call: Call<ExchangeRateVO>, t: Throwable) {
                 Log.i("Error", t.message.toString())
+
                 exchangeRate.value = null
             }
 
