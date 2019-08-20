@@ -11,7 +11,7 @@ class ViewPagerAdapter (fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         return when (position) {
             0 -> AllCurrencyFragment.newFragment()
             1 -> FavouriteCurrencyFragment.newFragment()
-            else -> DemoTwoFragment.newFragment()
+            else -> CurrencyCalculatorFragment.newFragment()
         }
     }
 

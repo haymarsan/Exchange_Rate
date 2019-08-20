@@ -16,4 +16,18 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
+    <string-array name="currency_arrays1">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>THB</item>
+        <item>SGD</item>
+    </string-array>
+
+    <string-array name="currency_arrays2">
+        <item>MMK</item>
+        <item>EUR</item>
+        <item>THB</item>
+        <item>SGD</item>
+        <item>USD</item>
+    </string-array>
 </resources>

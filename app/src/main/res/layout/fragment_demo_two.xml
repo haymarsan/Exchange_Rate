@@ -4,15 +4,88 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:orientation="vertical"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+                                                   android:layout_height="match_parent"
+                                                   android:padding="@dimen/margin_small"
+                                                   android:background="@color/gold">
 
-    <TextView
-            android:text="Demo Fragment Two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvFragmentName"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+    <ProgressBar
+            android:id="@+id/progressCalculate"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.47000003"
-            android:textStyle="bold" android:textSize="18sp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"/>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:id="@+id/rlFrame"
+                    android:padding="@dimen/margin_card_medium_2"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:background="@color/black">
+
+        <TextView android:layout_width="match_parent" android:layout_height="50dp"
+                  android:id="@+id/tvCalculationTitle"
+                  android:layout_marginTop="@dimen/margin_medium_2"
+                  android:text="Currency Rate Calculation"
+                  android:textSize="@dimen/text_regular_3x"
+                  android:textColor="@android:color/white"
+                  android:textStyle="bold"/>
+
+        <LinearLayout
+                android:id="@+id/llSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_card_medium_2"
+                android:layout_below="@id/tvCalculationTitle"
+                android:background="@drawable/bg_square_border"
+                android:paddingTop="@dimen/content_padding"
+                android:paddingBottom="@dimen/content_padding"
+                android:paddingStart="@dimen/content_padding"
+                android:paddingEnd="@dimen/content_padding">
+            <Spinner
+                    android:id="@+id/spnCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:entries="@array/currency_arrays1"
+                    android:textSize="@dimen/text_regular"
+            />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:id="@+id/tvAmount"
+                  android:text="Amount"
+                  android:layout_marginTop="@dimen/margin_xxlarge"
+                  android:layout_below="@+id/llSpinner"
+                  android:textSize="@dimen/text_regular_3x"
+                  android:textColor="@android:color/white"
+                  android:textStyle="bold"/>
+
+        <EditText android:layout_width="match_parent" android:layout_height="50dp"
+                  android:id="@+id/etAmount"
+                  android:layout_marginTop="@dimen/margin_small"
+                  android:layout_below="@+id/tvAmount"
+                  android:hint="0"
+                  android:textAlignment="center"
+                  android:background="@drawable/bg_square_border"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:id="@+id/tvMMK"
+                  android:text="MMK"
+                  android:layout_marginTop="@dimen/margin_xxlarge"
+                  android:layout_below="@+id/etAmount"
+                  android:textColor="@android:color/white"
+                  android:textSize="@dimen/text_regular_3x"
+                  android:textStyle="bold"/>
+
+        <EditText android:layout_width="match_parent" android:layout_height="50dp"
+                  android:id="@+id/etMMK"
+                  android:layout_marginTop="@dimen/margin_small"
+                  android:layout_below="@+id/tvMMK"
+                  android:hint="0.00 MMK"
+                  android:textAlignment="center"
+                  android:background="@drawable/bg_square_border"/>
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
