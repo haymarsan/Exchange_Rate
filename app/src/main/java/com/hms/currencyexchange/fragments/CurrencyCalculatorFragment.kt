@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
@@ -14,10 +13,8 @@ import com.hms.currencyexchange.R
 import com.hms.currencyexchange.data.vos.RateVO
 import com.hms.currencyexchange.viewmodel.ExchangeRateViewModel
 import com.hms.currencyexchange.viewmodel.ExchangeRateViewModelImpl
-import kotlinx.android.synthetic.main.fragment_demo_two.*
-import kotlinx.android.synthetic.main.fragment_demo_two.view.*
-import kotlinx.android.synthetic.main.fragment_favourite_currency.view.*
-
+import kotlinx.android.synthetic.main.fragment_currency_calculation.*
+import kotlinx.android.synthetic.main.fragment_currency_calculation.view.*
 
 class CurrencyCalculatorFragment : Fragment() {
 
@@ -26,10 +23,14 @@ class CurrencyCalculatorFragment : Fragment() {
     private var currencyType = "USD"
 
 
+    private lateinit var mSpinner: Spinner
 
-    private lateinit var mAmount:EditText
+    private lateinit var mAmount: EditText
 
-    private lateinit var mMMK:EditText
+    private lateinit var mMMK: EditText
+
+    //var mAmount = ""
+    //var mMMK =  ""
 
     var currencyList = ArrayList<RateVO>()
 
@@ -46,21 +47,32 @@ class CurrencyCalculatorFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_demo_two, container, false)
+        val view = inflater.inflate(R.layout.fragment_currency_calculation, container, false)
+        mSpinner = view.findViewById(R.id.spnCurrency) as Spinner
+        mAmount = view.findViewById(R.id.etAmount) as EditText
+        mMMK = view.findViewById(R.id.etMMK) as EditText
 
         //val currencyList = arrayOf("USD", "EUR", "SGD", "THB")
 
+
         mViewModel = ViewModelProviders.of(this).get(ExchangeRateViewModelImpl::class.java)
 
+        mSpinner.isEnabled = false
         view.progressCalculate.visibility = View.VISIBLE
+
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         mViewModel.getExchangeRate().observe(this, Observer {
             val data = it
             Log.d("Data Set", data.description)
-
             view.progressCalculate.visibility = View.GONE
-           // mSpinner = view.findViewById(R.id.spnCurrency)
-            mAmount = view.findViewById(R.id.etAmount)
-            mMMK = view.findViewById(R.id.etMMK)
+            mSpinner.isEnabled = true
+
 
             //etAmount.isEnabled = true
             //etMMK.isEnabled = true
@@ -80,25 +92,28 @@ class CurrencyCalculatorFragment : Fragment() {
 
 
             for ((key, value) in it.rates) {
-
-                if (isFavouriteCurrency(key, value.toDouble()))
-                    currencyList.add(RateVO(key, value))
+                val v = value.replace(",", "")
+                if (isFavouriteCurrency(key, v.toDouble()))
+                    currencyList.add(RateVO(key, v))
 
             }
 
         })
 
-
-        view.spnCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        mSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                currencyType = view!!.spnCurrency.selectedItem.toString()
+                currencyType = mSpinner.selectedItem.toString()
 
-                when(currencyType){
+                val amount = mAmount
+                val rate = usdRate
+
+                when (currencyType) {
                     "USD" -> {
+
                         mMMK.setText(calculateCurrency(mAmount.text.toString().toDouble(), usdRate).toString())
                     }
                     "EUR" -> {
@@ -115,14 +130,6 @@ class CurrencyCalculatorFragment : Fragment() {
             }
 
         }
-
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     private fun calculateCurrency(amount: Double, rate: Double): Double = amount * rate

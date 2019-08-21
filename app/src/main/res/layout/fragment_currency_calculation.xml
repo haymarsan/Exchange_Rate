@@ -20,61 +20,75 @@
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:id="@+id/rlFrame"
                     android:padding="@dimen/margin_card_medium_2"
-                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:background="@color/black">
 
         <TextView android:layout_width="match_parent" android:layout_height="50dp"
                   android:id="@+id/tvCalculationTitle"
                   android:layout_marginTop="@dimen/margin_medium_2"
                   android:text="Currency Rate Calculation"
-                  android:textSize="@dimen/text_regular_3x"
-                  android:textColor="@android:color/white"
+                  android:textSize="@dimen/text_heading_1x"
+                  android:textColor="@color/gold"
                   android:textStyle="bold"/>
 
-        <LinearLayout
-                android:id="@+id/llSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="@dimen/margin_card_medium_2"
-                android:layout_below="@id/tvCalculationTitle"
-                android:background="@drawable/bg_square_border"
-                android:paddingTop="@dimen/content_padding"
-                android:paddingBottom="@dimen/content_padding"
-                android:paddingStart="@dimen/content_padding"
-                android:paddingEnd="@dimen/content_padding">
-            <Spinner
-                    android:id="@+id/spnCurrency"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:entries="@array/currency_arrays1"
-                    android:textSize="@dimen/text_regular"
-            />
-        </LinearLayout>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/tvAmount"
                   android:text="Amount"
-                  android:layout_marginTop="@dimen/margin_xxlarge"
-                  android:layout_below="@+id/llSpinner"
+                  android:layout_marginTop="@dimen/margin_medium_2"
+                  android:layout_below="@+id/tvCalculationTitle"
                   android:textSize="@dimen/text_regular_3x"
-                  android:textColor="@android:color/white"
+                  android:textColor="@color/gold"
                   android:textStyle="bold"/>
 
         <EditText android:layout_width="match_parent" android:layout_height="50dp"
                   android:id="@+id/etAmount"
                   android:layout_marginTop="@dimen/margin_small"
                   android:layout_below="@+id/tvAmount"
-                  android:hint="0"
+                  android:text="0.0"
+                  android:inputType="numberDecimal"
                   android:textAlignment="center"
                   android:background="@drawable/bg_square_border"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:id="@+id/tvCurrencyType"
+                  android:text="Currency Type"
+                  android:layout_marginTop="@dimen/margin_xlarge"
+                  android:layout_below="@+id/etAmount"
+                  android:textSize="@dimen/text_regular_3x"
+                  android:textColor="@color/gold"
+                  android:textStyle="bold"/>
+
+        <LinearLayout
+                android:id="@+id/llSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:layout_below="@id/tvCurrencyType"
+                android:background="@drawable/bg_square_border"
+                android:paddingTop="@dimen/content_padding"
+                android:paddingBottom="@dimen/content_padding2"
+                android:paddingStart="@dimen/content_padding2"
+                android:paddingEnd="@dimen/content_padding2">
+            <Spinner
+                    android:id="@+id/spnCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:entries="@array/currency_arrays1"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:backgroundTint="@color/gold"
+            />
+        </LinearLayout>
+
+
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/tvMMK"
                   android:text="MMK"
                   android:layout_marginTop="@dimen/margin_xxlarge"
-                  android:layout_below="@+id/etAmount"
-                  android:textColor="@android:color/white"
+                  android:layout_below="@+id/llSpinner"
+                  android:textColor="@color/gold"
                   android:textSize="@dimen/text_regular_3x"
                   android:textStyle="bold"/>
 
