@@ -21,8 +21,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-   <string name="app_package">com.mmdeveloper.khunsma.eng_myandictionary</string>
-<string name="check_update">Check Update</string>
+    <string name="app_package">com.mmdeveloper.khunsma.eng_myandictionary</string>
+    <string name="check_update">Check Update</string>
     <string name="app_url">https://play.google.com/store/apps/details?id=com.mmdeveloper.khunsma.eng_myandictionary
     </string>
 

@@ -40,6 +40,25 @@ class RepositoryImpl: Repository {
     }
 
 
+    override fun getRecentDaysRate(date: String): MutableLiveData<ExchangeRateVO> {
+        var historyRate = MutableLiveData<ExchangeRateVO>()
+        mApi.getRecentDayRate(date).enqueue(object : Callback<ExchangeRateVO>{
+            override fun onFailure(call: Call<ExchangeRateVO>, t: Throwable) {
+                Log.i("Error", t.message.toString())
+
+                historyRate.value = null
+            }
+
+            override fun onResponse(call: Call<ExchangeRateVO>, response: Response<ExchangeRateVO>) {
+                if (response.isSuccessful){
+                    historyRate.value = response.body()
+                }
+            }
+        })
+
+        return historyRate
+    }
+
 
 
 }

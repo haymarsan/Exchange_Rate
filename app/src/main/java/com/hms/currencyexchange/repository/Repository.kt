@@ -6,4 +6,6 @@ import com.hms.currencyexchange.data.vos.ExchangeRateVO
 interface Repository {
 
     fun getLatestRate():MutableLiveData<ExchangeRateVO>
+
+    fun getRecentDaysRate(date: String): MutableLiveData<ExchangeRateVO>
 }

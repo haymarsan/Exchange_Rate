@@ -10,12 +10,23 @@ class ExchangeRateViewModelImpl: ViewModel(), ExchangeRateViewModel {
 
     private lateinit var exchangeRateList: MutableLiveData<ExchangeRateVO>
 
+    private lateinit var historyRateList: MutableLiveData<ExchangeRateVO>
+
     override fun getExchangeRate(): LiveData<ExchangeRateVO> {
         exchangeRateList = RepositoryImpl().getLatestRate()
 
         return exchangeRateList
 
     }
+
+    override fun getPreviousExchangeRate(date: String): LiveData<ExchangeRateVO> {
+        historyRateList = RepositoryImpl().getRecentDaysRate(date)
+
+        return historyRateList
+
+
+    }
+
 
 
 }

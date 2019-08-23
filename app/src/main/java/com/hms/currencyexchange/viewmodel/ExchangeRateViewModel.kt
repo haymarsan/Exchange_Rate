@@ -8,4 +8,6 @@ interface ExchangeRateViewModel {
 
     fun getExchangeRate(): LiveData<ExchangeRateVO>
 
+    fun getPreviousExchangeRate(date: String): LiveData<ExchangeRateVO>
+
 }
