@@ -24,6 +24,8 @@ class AllCurrencyFragment : Fragment() {
 
     companion object {
         fun newFragment(): AllCurrencyFragment {
+
+
             return AllCurrencyFragment()
         }
     }

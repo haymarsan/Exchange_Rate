@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.nav_history ->{
-                    Snackbar.make(navigationView, "Tapped Previous Day Currency Rate", Snackbar.LENGTH_LONG).show()
+                    val intent = PreviousDayRateActivity.newInstance(applicationContext)
+                    startActivity(intent)
                 }
                 R.id.nav_rate ->{
                     openMarket(getString(R.string.app_url), getString(R.string.app_package))
